@@ -61,6 +61,11 @@ service slapd start
 
 ##
 # Member of overlay related instructions are from https://tylersguides.com/guides/openldap-memberof-overlay/
-
 ldapmodify -Q -Y EXTERNAL -H ldapi:/// -f load_memberof.ldif
 ldapadd -Y EXTERNAL -H ldapi:/// -f apply_memberof.ldif
+
+##
+# Enable password hashing
+ldapadd -Q -Y EXTERNAL -H ldapi:/// -f /etc/ldap/schema/ppolicy.ldif
+ldapmodify -Q -Y EXTERNAL -H ldapi:/// -f load_ppolicy.ldif
+ldapadd -Q -Y EXTERNAL -H ldapi:/// -f apply_ppolicy.ldif
