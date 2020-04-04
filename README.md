@@ -25,3 +25,7 @@ It means that members of the `cn=admins,dc=your,dc=domain` group have full contr
 The install script does not create automatically this group though, it has to be done manually.
 If you need it just create a new groupOfNames object with the following RDN `cn=admins,dc=your,dc=domain`.
 Do not forget to replace dc=your,dc=domain with your own domain name.
+
+## Credit
+https://tylersguides.com/all-guides/
+https://unix.stackexchange.com/a/363087
