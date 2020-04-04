@@ -28,5 +28,5 @@ Do not forget to replace dc=your,dc=domain with your own domain name.
 
 ## Credit and source
 https://tylersguides.com/all-guides/   
-https://unix.stackexchange.com/a/363087
+https://unix.stackexchange.com/a/363087  
 https://daenney.github.io/2018/10/27/ldap-writing-testing-acls#structure-of-an-acl
