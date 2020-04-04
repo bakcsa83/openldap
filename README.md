@@ -18,7 +18,7 @@ and deletes ldap related folders like `/etc/ldap` and `/var/lib/ldap`. If have u
 then you first have to make backups.
 
 
-## Admin group
+## Admins group
 The config.ldif has an extra ACL:
 `olcAccess: {2}to * by group.exact="cn=admins,dc=example,dc=org" manage by * read`
 It means that members of the `cn=admins,dc=your,dc=domain` group have full control over the whole tree.
