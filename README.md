@@ -26,6 +26,7 @@ The install script does not create automatically this group though, it has to be
 If you need it just create a new groupOfNames object with the following RDN `cn=admins,dc=your,dc=domain`.
 Do not forget to replace dc=your,dc=domain with your own domain name.
 
-## Credit
+## Credit and source
 https://tylersguides.com/all-guides/   
 https://unix.stackexchange.com/a/363087
+https://daenney.github.io/2018/10/27/ldap-writing-testing-acls#structure-of-an-acl
