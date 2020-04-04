@@ -27,5 +27,5 @@ If you need it just create a new groupOfNames object with the following RDN `cn=
 Do not forget to replace dc=your,dc=domain with your own domain name.
 
 ## Credit
-https://tylersguides.com/all-guides/
+https://tylersguides.com/all-guides/   
 https://unix.stackexchange.com/a/363087
