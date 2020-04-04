@@ -24,10 +24,20 @@ echo ""
 read -p "Enter domain name (olcSuffix) (e.g.: example.com) : " OLC_SUFFIX_STR
 read -p "Enter organisation name (e.g.: Example organisation) : " ORGANISATION
 
-sed 's/VAR_OLC_SUFFIX/'"$OLC_SUFFIX_STR"'/g; s/VAR_ORGANIZATION/'"$ORGANISATION"'/g' debconf-slapd.conf > debconf-slapd.conf.cust
+read -s -p "Enter admin password: " ADMIN_PWD
+echo ""
+read -s -p "Repeat admin password: " ADMIN_PWD2
+echo ""
 
+if [ "$ADMIN_PWD" != "$ADMIN_PWD2" ]; then
+  echo "Passwords are not the same"
+  echo "Exit"
+  exit
+fi
+
+sed 's/VAR_OLC_SUFFIX/'"$OLC_SUFFIX_STR"'/g; s/VAR_ORGANIZATION/'"$ORGANISATION"'/g; s/VAR_ADMIN_PWD/'"$ADMIN_PWD"'/g' slpad_inst.conf > slpad_inst.conf.cust
 export DEBIAN_FRONTEND=noninteractive
-cat debconf-slapd.conf.cust | debconf-set-selections
+cat slpad_inst.conf.cust | debconf-set-selections
 apt update
 echo ""
 echo "Installing OpenLdap"
@@ -57,7 +67,8 @@ slapadd -F "$LDAP_CONF_DIR" -n 0 -l config.ldif.cust
 chown -R openldap:openldap $LDAP_CONF_DIR
 service slapd start
 
-
+rm config.ldif.cust
+rm slpad_inst.conf.cust
 
 ##
 # Member of overlay related instructions are from https://tylersguides.com/guides/openldap-memberof-overlay/
@@ -69,3 +80,5 @@ ldapadd -Y EXTERNAL -H ldapi:/// -f apply_memberof.ldif
 ldapadd -Q -Y EXTERNAL -H ldapi:/// -f /etc/ldap/schema/ppolicy.ldif
 ldapmodify -Q -Y EXTERNAL -H ldapi:/// -f load_ppolicy.ldif
 ldapadd -Q -Y EXTERNAL -H ldapi:/// -f apply_ppolicy.ldif
+
+echo "Done"
