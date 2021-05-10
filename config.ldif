@@ -1102,10 +1102,10 @@ objectClass: olcMdbConfig
 olcDatabase: {1}mdb
 olcDbDirectory: /var/lib/ldap
 olcSuffix: dc=example,dc=org
-olcAccess: {0}to attrs=userPassword by self write by anonymous auth by * non
- e
-olcAccess: {1}to attrs=shadowLastChange by self write by * read
-olcAccess: {2}to * by * read
+olcAccess: {0}to * by group.exact="cn=admins,dc=example,dc=org" manage by * read
+olcAccess: {1}to attrs=userPassword by self write by anonymous auth by * none
+olcAccess: {2}to attrs=shadowLastChange by self write by * read
+olcAccess: {3}to * by * read
 olcLastMod: TRUE
 olcRootDN: cn=admin,dc=example,dc=org
 olcRootPW:: e1NTSEF9Y2hPZWd1MzRuM3ZEUEowdURER3VKZDlxcDdKZ3dTMlQ=
